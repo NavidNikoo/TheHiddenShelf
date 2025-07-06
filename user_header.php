@@ -16,12 +16,12 @@ if(isset($message)){
       <div class="logo_cont">
         <img src="book_logo.png" alt="">
 
-        <a href="home.php" class="book_logo">The Hidden Shelf</a>
+        <a href="index.php" class="book_logo">The Hidden Shelf</a>
       </div>
 
 
       <nav class="navbar">
-        <a href="home.php">Home</a>
+        <a href="index.php">Home</a>
         <a href="about.php">About</a>
         <a href="shop.php">Shop</a>
         <a href="contact.php">Contact</a>
