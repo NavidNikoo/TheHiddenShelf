@@ -1,11 +1,18 @@
-# Use official PHP image
-FROM php:8.2-cli
+# Use an official PHP image with Apache
+FROM php:8.2-apache
 
-# Set working directory inside the container
-WORKDIR /var/www/html
+# Enable mod_rewrite
+RUN a2enmod rewrite
 
-# Copy all files into container
-COPY . .
+# Copy your code into the Apache server root
+COPY . /var/www/html/
 
-# Start PHP built-in server on Render's port
-CMD ["php", "-S", "0.0.0.0:10000", "-t", "."]
+# Set working directory (optional)
+WORKDIR /var/www/html/
+
+# Give permission (just in case)
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Expose port 80 (default for Apache)
+EXPOSE 80
