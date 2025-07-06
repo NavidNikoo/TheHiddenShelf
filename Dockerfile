@@ -1,16 +1,19 @@
-# Use official PHP with Apache image
 FROM php:8.2-apache
 
-# Install mysqli and other dependencies
+# Install system dependencies and mysqli extension
 RUN apt-get update && \
+    apt-get install -y libpng-dev libonig-dev libxml2-dev zip unzip && \
     docker-php-ext-install mysqli && \
     a2enmod rewrite
 
-# Copy project files into the web server directory
-COPY . /var/www/html/
+# Set working directory
+WORKDIR /var/www/html
 
-# Set proper permissions (optional)
+# Copy project files
+COPY . .
+
+# Set correct permissions
 RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80 (Apache default)
+# Expose Apache default port
 EXPOSE 80
